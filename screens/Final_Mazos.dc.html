@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=402, user-scalable=no">
+<title>Kinoo · Elección del mazo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{text-decoration:none;color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit}
+.kscroll{scrollbar-width:none;-ms-overflow-style:none}
+.kscroll::-webkit-scrollbar{display:none}
+@keyframes kin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes kfade{from{opacity:0}to{opacity:1}}
+@keyframes kpop{0%{transform:scale(1)}35%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes kbump{0%{transform:rotate(4deg) scale(1)}35%{transform:rotate(-8deg) scale(1.3)}100%{transform:rotate(4deg) scale(1)}}
+@keyframes kspin{to{transform:rotate(1turn)}}
+@keyframes kfill{from{width:0}to{width:100%}}
+@keyframes kshake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes kdeal{from{transform:translateY(-120px) scale(.75) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes kwig{0%,80%,100%{rotate:0deg}85%{rotate:-3deg}90%{rotate:3deg}95%{rotate:-2deg}}
+@keyframes kpulse{50%{transform:scale(1.12)}}
+@keyframes kblink{50%{opacity:.25}}
+@keyframes kchev{50%{transform:translateY(4px)}}
+@keyframes kmodal{from{transform:translateY(40px) scale(.92);opacity:0}to{transform:none;opacity:1}}
+@keyframes knotif{from{transform:translateY(-140px) scale(.9);opacity:0}to{transform:none;opacity:1}}
+@keyframes kwave{0%,100%{height:4px}50%{height:18px}}
+.kin{animation:kin .45s cubic-bezier(.2,.9,.25,1.05) both}
+.kfade{animation:kfade .3s ease both}
+.kpop{animation:kpop .4s ease-out}
+.kbump{animation:kbump .6s cubic-bezier(.3,1.7,.5,1)}
+.kspin{animation:kspin 40s linear infinite}
+.kfill{animation:kfill 2200ms linear both}
+.kshake{animation:kshake .4s}
+.kdeal{animation:kdeal .55s cubic-bezier(.2,.9,.25,1.1) both}
+.kwig{animation:kwig 1.8s ease-in-out infinite}
+.kpulse{animation:kpulse 1.4s ease-in-out infinite}
+.kblink{animation:kblink 1.2s infinite}
+.kchev{animation:kchev 1.6s ease-in-out infinite}
+.kmodal{animation:kmodal .5s cubic-bezier(.2,.9,.25,1.15) both}
+.knotif{animation:knotif .7s .4s cubic-bezier(.2,.9,.25,1.15) both}
+.kwave{animation:kwave .7s ease-in-out infinite}
+
+/* ---- Kinoo · motion v1 ---- */
+:root{--k-ease:cubic-bezier(.2,.8,.2,1);--k-in:cubic-bezier(.5,0,.75,0);--k-spring:cubic-bezier(.3,1.4,.5,1)}
+@keyframes kscreen{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes kstagger{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes kfanin{from{opacity:0;transform:translateY(46px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes kdealf{from{opacity:.4;transform:translateY(14px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes kdealin{from{opacity:0;transform:translateY(-70px) rotate(-7deg) scale(.88)}to{opacity:1;transform:none}}
+@keyframes kswap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes kgrow{from{transform:scaleX(0)}to{transform:none}}
+@keyframes knudge{50%{transform:translate(3px,-3px)}}
+.kfin{animation:kscreen .42s var(--k-ease) both}
+.kpress{transition:transform .14s var(--k-ease),filter .14s}
+.kpress:active{transform:scale(.97);filter:brightness(1.08)}
+.kstag>*{animation:kstagger .5s var(--k-ease) both}
+.kstag>*:nth-child(1){animation-delay:.04s}.kstag>*:nth-child(2){animation-delay:.09s}.kstag>*:nth-child(3){animation-delay:.14s}.kstag>*:nth-child(4){animation-delay:.19s}
+.kstag>*:nth-child(5){animation-delay:.24s}.kstag>*:nth-child(6){animation-delay:.29s}.kstag>*:nth-child(7){animation-delay:.34s}.kstag>*:nth-child(8){animation-delay:.39s}
+.kfan{animation:kfanin .6s var(--k-spring) both}
+.kdealf{animation:kdealf .34s var(--k-spring) both}
+.kdealin{animation:kdealin .52s var(--k-spring) both}
+.kswap{animation:kswap .3s var(--k-ease) both}
+.knudge{display:inline-block;animation:knudge 1.6s var(--k-ease) infinite}
+a,button,[role=button]{-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+<style>html,body{margin:0;background:#17120f;-webkit-tap-highlight-color:transparent;scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}#kdc-root{width:402px;margin:0 auto}</style>
+</head>
+<body>
+<div id="kdc-root"></div>
+<template id="kdc-tpl">
+
+<div class="kfin kroot" style="position:relative;width:402px;height:844px;overflow:hidden;background:#17120f;font-family:'Figtree',sans-serif;color:#f4e7d0;user-select:none">
+  <div style="position:absolute;left:6px;top:0;width:390px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;padding:14px 20px 6px 20px">
+    <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:32px;line-height:32px;letter-spacing:0.5px;color:#f4e7d0">Kinoo</p>
+    <a href="Final_Perfil.dc.html" aria-label="Tu perfil" style="width:44px;height:44px;box-sizing:border-box;border:2px solid #ce7e01;border-radius:22px;background:#221a15;display:flex;align-items:center;justify-content:center">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f4e7d0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21v-1a5.5 5.5 0 0 1 5.5-5.5h4a5.5 5.5 0 0 1 5.5 5.5v1"></path></svg>
+    </a>
+  </div>
+  <div style="position:absolute;left:199px;top:23px;box-sizing:border-box;border:1px solid #8a7458;border-radius:15px;padding:8px 13px;display:flex">
+    <p style="margin:0;font-weight:600;font-size:12px;line-height:14px;letter-spacing:1.2px;text-transform:uppercase;color:#d9c7a8;white-space:nowrap">Fin del mazo</p>
+  </div>
+
+  <div style="position:absolute;left:26px;top:80px;width:350px">
+    <p style="margin:0;font-family:'Figtree',sans-serif;font-style:italic;font-weight:600;font-size:16px;line-height:22px;color:#f2b544">tres caminos para hoy</p>
+    <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:44px;line-height:40px;text-transform:uppercase">Elige una carta</p>
+  </div>
+  <div style="position:absolute;left:0;top:168px;width:402px;height:270px">
+    <sc-for list="{{decks}}" as="d" hint-placeholder-count="3">
+      <div class="kfan" style="animation-delay:{{d.dl}}"><button class="{{d.cls}}" onClick="{{d.pick}}" aria-pressed="{{d.on}}" style="position:absolute;left:{{d.x}}px;top:{{d.y}}px;width:140px;height:200px;box-sizing:border-box;border-radius:14px;border:{{d.bd}};overflow:hidden;padding:0;transform:rotate({{d.r}}deg);transform-origin:50% 120%;box-shadow:{{d.sh}};z-index:{{d.z}};transition:top .3s cubic-bezier(.3,1.5,.5,1),transform .3s cubic-bezier(.3,1.5,.5,1),box-shadow .3s,border-color .2s;text-align:left"><div style="position:absolute;inset:0;background:{{d.c0}};overflow:hidden"><svg aria-hidden="true" style="position:absolute;left:50%;bottom:-52px;margin-left:-63px" width="126" height="126" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="{{d.c1}}"></circle><circle cx="50" cy="50" r="37" fill="{{d.c2}}"></circle><circle cx="50" cy="50" r="24" fill="{{d.c3}}"></circle><circle cx="50" cy="50" r="11" fill="#f4e7d0"></circle></svg><span style="position:absolute;right:14px;top:90px"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l1.8 6.2L16 8l-6.2 1.8L8 16l-1.8-6.2L0 8l6.2-1.8Z" fill="#f2b544"></path></svg></span><div aria-hidden="true" style="position:absolute;inset:5px;border:1px solid rgba(244,231,208,.35);border-radius:inherit"></div><div style="position:absolute;left:12px;right:12px;top:14px;display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span style="font-weight:800;font-size:9.5px;letter-spacing:1.3px;text-transform:uppercase;color:#f4e7d0;border:1px solid rgba(244,231,208,.6);border-radius:9px;padding:3px 7px">{{d.kind}} · 10 cartas</span><span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:20px;line-height:.95;text-transform:uppercase;color:#f4e7d0">{{d.title}}</span></div></div></button></div>
+    </sc-for>
+  </div>
+  <div style="position:absolute;left:26px;top:448px;width:350px;height:180px">
+    <sc-if value="{{none}}" hint-placeholder-val="{{ false }}">
+      <div style="height:170px;box-sizing:border-box;border-radius:16px;border:1.5px dashed #5a4838;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:0 30px">
+        <span class="kpulse" style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:22px;text-transform:uppercase">Toca una carta</span>
+        <span style="font-weight:600;font-size:12.5px;line-height:17px;color:#bfa98a">Cada una es un mazo de 10 películas. Aquí te contamos qué trae.</span>
+      </div>
+    </sc-if>
+    <sc-if value="{{some}}" hint-placeholder-val="{{ true }}">
+      <div class="{{infoCls}}" style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Figtree',sans-serif;font-style:italic;font-weight:600;font-size:15px;line-height:19px;color:#f2b544">{{s.voice}}</span>
+        <p style="margin:0;font-weight:500;font-size:14px;line-height:20px;color:#f4e7d0">{{s.what}}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px">
+          <sc-for list="{{s.chipL}}" as="c" hint-placeholder-count="3"><span style="border:1px solid #5a4838;border-radius:12px;padding:5px 10px;font-weight:600;font-size:12px;color:#e6d3b3">{{c.l}}</span></sc-for>
+        </div>
+        <p style="margin:2px 0 0;font-weight:700;font-size:12px;color:#bfa98a">{{s.newTxt}} · {{s.durTxt}}</p>
+      </div>
+    </sc-if>
+  </div>
+  <div style="position:absolute;left:26px;top:648px;width:350px;display:flex;flex-direction:column;align-items:center;gap:4px">
+    <sc-if value="{{some}}" hint-placeholder-val="{{ true }}"><a class="kpress kswap" href="Final_Inicio.dc.html" style="box-sizing:border-box;width:350px;height:58px;display:flex;align-items:center;justify-content:center;gap:10px;background:#5e0c10;border:2px solid #f4e7d0;border-radius:29px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:24px;letter-spacing:.4px;text-transform:uppercase;color:#f4e7d0;white-space:nowrap">Empezar este mazo</a></sc-if>
+    <sc-if value="{{none}}" hint-placeholder-val="{{ false }}"><div aria-disabled="true" style="box-sizing:border-box;width:350px;height:58px;display:flex;align-items:center;justify-content:center;background:#2a1d18;border:2px solid #8a7458;border-radius:29px;opacity:.6;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:24px;letter-spacing:.4px;text-transform:uppercase;color:#d9c7a8">Elige una carta</div></sc-if>
+    <a href="Final_Ver.dc.html" style="height:44px;display:flex;align-items:center;font-weight:600;font-size:14px;color:#d9c7a8;text-decoration:underline">Mejor ver algo ahora</a>
+  </div>
+
+<div style="position: absolute; left: 0px; top: 761px; width: 402px; height: 84px; box-sizing: border-box; padding: 10px 16px 22px; display: flex; align-items: flex-start; background: #f4e7d0; border-radius: 26px 26px 0 0; z-index: 4">
+    <a href="Final_Ver.dc.html" aria-label="Ir a Ver" style="width:119px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b5844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="m10 8.5 5.5 3.5-5.5 3.5Z"></path></svg>
+      <p style="margin:0;font-weight:600;font-size:12px;line-height:14px;color:#6b5844">Ver</p>
+    </a>
+    <div style="width:119px;height:52px;box-sizing:border-box;border:2px solid #1a1411;border-radius:26px;background:#5e0c10;padding:3px 8px;display:flex;align-items:center;justify-content:center;gap:7px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f4e7d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="m15.5 8.5-2 5-5 2 2-5Z"></path></svg>
+      <p style="margin:0;font-weight:700;font-size:14px;line-height:17px;color:#f4e7d0;white-space:nowrap">Descubrir</p>
+    </div>
+    <div style="width:119px;height:52px;box-sizing:border-box;padding:1px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b5844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20v-1a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5v1"></path><path d="M15.5 4.7a3.5 3.5 0 0 1 0 6.6"></path><path d="M18 14.2a5 5 0 0 1 3.5 4.8v1"></path></svg>
+      <p style="margin:0;font-weight:600;font-size:12px;line-height:14px;color:#6b5844;white-space:nowrap">Comunidad</p>
+    </div>
+  </div>
+</div>
+</template>
+<script type="text/x-dc" id="kdc-logic">
+class Component extends DCLogic {
+_decks() {
+  if (this.__d) return this.__d;
+  const D = [{"kind": "Mood", "title": "Lentas y melancólicas", "voice": "para una noche sin prisa", "c": ["#b83a26", "#e8642c", "#f2b544", "#f4e7d0"], "what": "Diez películas que se toman su tiempo y no tienen miedo de doler. Para ver con calma y sin el celular en la mano.", "facts": [["Ritmo", "Pausado"], ["Duración", "1 h 40 a 2 h 30"], ["Épocas", "Del 2000 a hoy"], ["Nuevas para ti", "8 de 10"]], "chips": ["Ritmo pausado", "Finales que duelen", "Dramas íntimos"], "clues": ["Un padre cruza el universo para volver.", "Dos amigos de infancia se reencuentran veinte años después.", "Unas vacaciones que solo se entienden de grande."], "why": "Lo armamos con tus últimos ○: elegiste dramas lentos 4 veces."}, {"kind": "Hilo", "title": "Sigue a Christopher Nolan", "voice": "porque marcaste Interstellar ○", "c": ["#8e3714", "#e8642c", "#f2b544", "#f4e7d0"], "what": "Un recorrido por Nolan: seis películas suyas y cuatro que lo inspiraron. Tiempo, memoria y trucos de magia.", "facts": [["Ritmo", "Intenso"], ["Duración", "2 h a 3 h"], ["Épocas", "De los 60 a hoy"], ["Nuevas para ti", "7 de 10"]], "chips": ["Su obra", "Lo que lo inspiró", "Ciencia ficción"], "clues": ["Dos magos se arruinan por un truco.", "Un hombre sin memoria busca al asesino de su esposa.", "Un sueño dentro de otro sueño."], "why": "Marcaste Interstellar con ○ y te quedaste en su carta más tiempo que en ninguna."}, {"kind": "Creadores", "title": "Lo que guardaron Ana y Leo", "voice": "lo firman ellos dos", "c": ["#5e0c10", "#b83a26", "#e8642c", "#f2b544"], "what": "La lista personal de Ana y Leo, curadores de Kinoo. Cine de autor que casi nadie te va a recomendar, con sus notas.", "facts": [["Ritmo", "Variado"], ["Duración", "1 h 30 a 2 h 10"], ["Épocas", "De los 90 a hoy"], ["Nuevas para ti", "9 de 10"]], "chips": ["Cine de autor", "Nuevas para ti", "Con nota del curador"], "clues": ["Ana: “La vimos dos veces seguidas.”", "Leo: “Para un domingo por la tarde.”", "Ana: “La mejor banda sonora del año.”"], "why": "Ana y Leo suelen guardar películas que se parecen a las que tú marcas."}];
+  this.__d = D.map((d) => Object.assign({}, d, { c0: d.c[0], c1: d.c[1], c2: d.c[2], c3: d.c[3],
+    facts: d.facts.map((f) => ({ k: f[0], v: f[1] })), chipL: d.chips.map((l) => ({ l })) }));
+  return this.__d;
+}
+renderVals() {
+  const S = this.state || {};
+  const D = this._decks();
+  const p = typeof S.p === 'number' ? S.p : -1;
+  const base = [{ x: 30, r: -9 }, { x: 131, r: 0 }, { x: 232, r: 9 }];
+  const s = D[Math.max(0, p)];
+  return {
+    decks: D.map((d, i) => { const on = i === p; return Object.assign({}, d, { on, x: base[i].x, r: on ? 0 : base[i].r, y: on ? 0 : 40, z: on ? 3 : (i === 1 ? 2 : 1), dl: (0.06 + i * 0.09).toFixed(2) + 's', cls: on && S.a ? 'kpop' : '',
+      bd: on ? '3px solid #f4e7d0' : '2px solid #5a4838', sh: on ? '0 18px 30px rgba(0,0,0,.6)' : '0 8px 16px rgba(0,0,0,.4)', pick: () => { if ((this.state || {}).p === i) return; this.setState({ p: i, a: false }); setTimeout(() => this.setState({ a: true }), 16); } }); }),
+    none: p < 0, some: p >= 0, infoCls: S.a === false ? '' : 'kin',
+    s: Object.assign({}, s, { newTxt: s.facts[3].v + ' nuevas para ti', durTxt: 'de ' + s.facts[1].v })
+  };
+}
+}
+</script>
+<script src="../runtime/preact.min.umd.js"></script>
+<script src="../runtime/kinoo-dc.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=402, user-scalable=no">
+<title>Kinoo · Inicio del mazo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&amp;family=Figtree:ital,wght@0,400;0,600;0,700;0,800;1,600;1,800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{text-decoration:none;color:inherit}
+
+/* ---- Kinoo · motion v1 ---- */
+:root{--k-ease:cubic-bezier(.2,.8,.2,1);--k-in:cubic-bezier(.5,0,.75,0);--k-spring:cubic-bezier(.3,1.4,.5,1)}
+@keyframes kscreen{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes kstagger{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes kfanin{from{opacity:0;transform:translateY(46px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes kdealf{from{opacity:.4;transform:translateY(14px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes kdealin{from{opacity:0;transform:translateY(-70px) rotate(-7deg) scale(.88)}to{opacity:1;transform:none}}
+@keyframes kswap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes kgrow{from{transform:scaleX(0)}to{transform:none}}
+@keyframes knudge{50%{transform:translate(3px,-3px)}}
+.kfin{animation:kscreen .42s var(--k-ease) both}
+.kpress{transition:transform .14s var(--k-ease),filter .14s}
+.kpress:active{transform:scale(.97);filter:brightness(1.08)}
+.kstag>*{animation:kstagger .5s var(--k-ease) both}
+.kstag>*:nth-child(1){animation-delay:.04s}.kstag>*:nth-child(2){animation-delay:.09s}.kstag>*:nth-child(3){animation-delay:.14s}.kstag>*:nth-child(4){animation-delay:.19s}
+.kstag>*:nth-child(5){animation-delay:.24s}.kstag>*:nth-child(6){animation-delay:.29s}.kstag>*:nth-child(7){animation-delay:.34s}.kstag>*:nth-child(8){animation-delay:.39s}
+.kfan{animation:kfanin .6s var(--k-spring) both}
+.kdealf{animation:kdealf .34s var(--k-spring) both}
+.kdealin{animation:kdealin .52s var(--k-spring) both}
+.kswap{animation:kswap .3s var(--k-ease) both}
+.knudge{display:inline-block;animation:knudge 1.6s var(--k-ease) infinite}
+a,button,[role=button]{-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+<style>html,body{margin:0;background:#17120f;-webkit-tap-highlight-color:transparent;scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}#kdc-root{width:402px;margin:0 auto}</style>
+</head>
+<body>
+<div id="kdc-root"></div>
+<template id="kdc-tpl">
+
+<div class="kfin" style="position:relative;width:402px;height:844px;overflow:hidden;background:#17120f;font-family:'Figtree',sans-serif;color:#f4e7d0">
+
+  <div style="position:absolute;left:6px;top:0;width:390px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;padding:14px 20px 6px 20px">
+    <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:32px;line-height:32px;letter-spacing:0.5px;color:#f4e7d0">Kinoo</p>
+    <a class="kpress" href="Final_Perfil.dc.html" aria-label="Tu perfil" style="width:44px;height:44px;box-sizing:border-box;border:2px solid #ce7e01;border-radius:22px;background:#221a15;display:flex;align-items:center;justify-content:center">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f4e7d0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21v-1a5.5 5.5 0 0 1 5.5-5.5h4a5.5 5.5 0 0 1 5.5 5.5v1"></path></svg>
+    </a>
+  </div>
+  <div style="position:absolute;left:199px;top:23px;box-sizing:border-box;border:1px solid #8a7458;border-radius:15px;padding:8px 13px;display:flex">
+    <p style="margin:0;font-weight:600;font-size:12px;line-height:14px;letter-spacing:1.2px;text-transform:uppercase;color:#d9c7a8;white-space:nowrap">Fin del mazo</p>
+  </div>
+
+  <div style="position:absolute;left:26px;top:52px;width:350px;height:668px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px">
+
+    <div style="position:relative;flex:none;width:210px;height:230px">
+      <div class="kfan" style="animation-delay:0.05s;position:absolute;left:30px;top:10px;width:150px;height:210px">
+        <div style="position:absolute;left:-29.4px;top:0.91px;width:190.383px;height:236.598px;display:flex;align-items:center;justify-content:center">
+          <div style="flex:none;transform:rotate(-12deg)">
+            <div style="position:relative;width:150px;height:210px;box-sizing:border-box;border:3px solid #f4e7d0;border-radius:16px;overflow:hidden;background:#e8642c;box-shadow:0 6px 16px rgba(0,0,0,0.35)">
+              <div style="position:absolute;left:12px;top:42px;width:120px;height:120px;border-radius:60px;background:#f2b544"></div>
+              <div style="position:absolute;left:37px;top:67px;width:70px;height:70px;border-radius:35px;background:#f4e7d0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kfan" style="animation-delay:0.12s;position:absolute;left:30px;top:10px;width:150px;height:210px">
+        <div style="position:absolute;left:-15.9px;top:-0.68px;width:171.124px;height:224.526px;display:flex;align-items:center;justify-content:center">
+          <div style="flex:none;transform:rotate(-6deg)">
+            <div style="position:relative;width:150px;height:210px;box-sizing:border-box;border:3px solid #f4e7d0;border-radius:16px;overflow:hidden;background:#e8642c;box-shadow:0 6px 16px rgba(0,0,0,0.35)">
+              <div style="position:absolute;left:12px;top:42px;width:120px;height:120px;border-radius:60px;background:#f2b544"></div>
+              <div style="position:absolute;left:37px;top:67px;width:70px;height:70px;border-radius:35px;background:#f4e7d0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kfan" style="animation-delay:0.19s;position:absolute;left:30px;top:10px;width:150px;height:210px;box-sizing:border-box;border:3px solid #f4e7d0;border-radius:16px;overflow:hidden;background:#e8642c;box-shadow:0 6px 16px rgba(0,0,0,0.35)">
+        <div style="position:absolute;left:12px;top:42px;width:120px;height:120px;border-radius:60px;background:#f2b544"></div>
+        <div style="position:absolute;left:37px;top:67px;width:70px;height:70px;border-radius:35px;background:#f4e7d0"></div>
+      </div>
+      <div class="kfan" style="animation-delay:0.26s;position:absolute;left:30px;top:10px;width:150px;height:210px">
+        <div style="position:absolute;left:-5.25px;top:-0.7px;width:171.124px;height:224.526px;display:flex;align-items:center;justify-content:center">
+          <div style="flex:none;transform:rotate(6deg)">
+            <div style="position:relative;width:150px;height:210px;box-sizing:border-box;border:3px solid #f4e7d0;border-radius:16px;overflow:hidden;background:#e8642c;box-shadow:0 6px 16px rgba(0,0,0,0.35)">
+              <div style="position:absolute;left:12px;top:42px;width:120px;height:120px;border-radius:60px;background:#f2b544"></div>
+              <div style="position:absolute;left:37px;top:67px;width:70px;height:70px;border-radius:35px;background:#f4e7d0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kfan" style="animation-delay:0.33s;position:absolute;left:30px;top:10px;width:150px;height:210px">
+        <div style="position:absolute;left:-10.96px;top:0.9px;width:190.383px;height:236.598px;display:flex;align-items:center;justify-content:center">
+          <div style="flex:none;transform:rotate(12deg)">
+            <div style="position:relative;width:150px;height:210px;box-sizing:border-box;border:3px solid #f4e7d0;border-radius:16px;overflow:hidden;background:#e8642c;box-shadow:0 6px 16px rgba(0,0,0,0.35)">
+              <div style="position:absolute;left:12px;top:42px;width:120px;height:120px;border-radius:60px;background:#f2b544"></div>
+              <div style="position:absolute;left:37px;top:67px;width:70px;height:70px;border-radius:35px;background:#f4e7d0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kstag" style="flex:none;width:350px;display:flex;flex-direction:column;gap:6px;text-align:center">
+      <p style="margin:0;font-style:italic;font-weight:600;font-size:16px;line-height:22px;color:#f2b544">tu mazo está listo</p>
+      <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:44px;line-height:40.5px;text-transform:uppercase;color:#f4e7d0">Lentas y melancólicas</p>
+      <p style="margin:0;font-weight:400;font-size:14px;line-height:17px;color:#d9c7a8">10 cartas · y una de ellas es especial</p>
+    </div>
+
+    <div style="flex:none;width:350px;display:flex;flex-direction:column;gap:4px">
+      <a class="kpress" href="Final_Cartas.dc.html" style="box-sizing:border-box;width:100%;height:58px;display:flex;align-items:center;justify-content:center;padding:2px 26px;background:#5e0c10;border:2px solid #f4e7d0;border-radius:29px">
+        <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:24px;line-height:54px;letter-spacing:0.4px;text-transform:uppercase;color:#f4e7d0;white-space:nowrap">Empezar a descubrir</span>
+      </a>
+      <a href="Final_Ver.dc.html" style="height:44px;display:flex;align-items:center;justify-content:center;padding:2px 18px;cursor:pointer">
+        <p style="margin:0;font-weight:600;font-size:14px;line-height:40px;color:#d9c7a8;text-decoration:underline;white-space:nowrap">Mejor ver algo ahora</p>
+      </a>
+    </div>
+  </div>
+<div style="position: absolute; left: 0px; top: 761px; width: 402px; height: 84px; box-sizing: border-box; padding: 10px 16px 22px; display: flex; align-items: flex-start; background: #f4e7d0; border-radius: 26px 26px 0 0; z-index: 4">
+    <a href="Final_Ver.dc.html" aria-label="Ir a Ver" style="width:119px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b5844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="m10 8.5 5.5 3.5-5.5 3.5Z"></path></svg>
+      <p style="margin:0;font-weight:600;font-size:12px;line-height:14px;color:#6b5844">Ver</p>
+    </a>
+    <div style="width:119px;height:52px;box-sizing:border-box;border:2px solid #1a1411;border-radius:26px;background:#5e0c10;padding:3px 8px;display:flex;align-items:center;justify-content:center;gap:7px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f4e7d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="m15.5 8.5-2 5-5 2 2-5Z"></path></svg>
+      <p style="margin:0;font-weight:700;font-size:14px;line-height:17px;color:#f4e7d0;white-space:nowrap">Descubrir</p>
+    </div>
+    <div style="width:119px;height:52px;box-sizing:border-box;padding:1px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b5844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20v-1a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5v1"></path><path d="M15.5 4.7a3.5 3.5 0 0 1 0 6.6"></path><path d="M18 14.2a5 5 0 0 1 3.5 4.8v1"></path></svg>
+      <p style="margin:0;font-weight:600;font-size:12px;line-height:14px;color:#6b5844;white-space:nowrap">Comunidad</p>
+    </div>
+  </div></div>
+</template>
+<script type="text/x-dc" id="kdc-logic">
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+<script src="../runtime/preact.min.umd.js"></script>
+<script src="../runtime/kinoo-dc.js"></script>
+</body>
+</html>

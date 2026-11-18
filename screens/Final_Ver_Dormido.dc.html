@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=402, user-scalable=no">
+<title>Kinoo · Ver · ¿Terminaste? (al abrir)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{text-decoration:none;color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit}
+.kscroll{scrollbar-width:none;-ms-overflow-style:none}
+.kscroll::-webkit-scrollbar{display:none}
+@keyframes kin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes kfade{from{opacity:0}to{opacity:1}}
+@keyframes kpop{0%{transform:scale(1)}35%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes kbump{0%{transform:rotate(4deg) scale(1)}35%{transform:rotate(-8deg) scale(1.3)}100%{transform:rotate(4deg) scale(1)}}
+@keyframes kspin{to{transform:rotate(1turn)}}
+@keyframes kfill{from{width:0}to{width:100%}}
+@keyframes kshake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes kdeal{from{transform:translateY(-120px) scale(.75) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes kwig{0%,80%,100%{rotate:0deg}85%{rotate:-3deg}90%{rotate:3deg}95%{rotate:-2deg}}
+@keyframes kpulse{50%{transform:scale(1.12)}}
+@keyframes kblink{50%{opacity:.25}}
+@keyframes kchev{50%{transform:translateY(4px)}}
+@keyframes kmodal{from{transform:translateY(40px) scale(.92);opacity:0}to{transform:none;opacity:1}}
+@keyframes knotif{from{transform:translateY(-140px) scale(.9);opacity:0}to{transform:none;opacity:1}}
+@keyframes kwave{0%,100%{height:4px}50%{height:18px}}
+.kin{animation:kin .45s cubic-bezier(.2,.9,.25,1.05) both}
+.kfade{animation:kfade .3s ease both}
+.kpop{animation:kpop .4s ease-out}
+.kbump{animation:kbump .6s cubic-bezier(.3,1.7,.5,1)}
+.kspin{animation:kspin 40s linear infinite}
+.kfill{animation:kfill 2200ms linear both}
+.kshake{animation:kshake .4s}
+.kdeal{animation:kdeal .55s cubic-bezier(.2,.9,.25,1.1) both}
+.kwig{animation:kwig 1.8s ease-in-out infinite}
+.kpulse{animation:kpulse 1.4s ease-in-out infinite}
+.kblink{animation:kblink 1.2s infinite}
+.kchev{animation:kchev 1.6s ease-in-out infinite}
+.kmodal{animation:kmodal .5s cubic-bezier(.2,.9,.25,1.15) both}
+.knotif{animation:knotif .7s .4s cubic-bezier(.2,.9,.25,1.15) both}
+.kwave{animation:kwave .7s ease-in-out infinite}
+
+/* ---- Kinoo · motion v1 ---- */
+:root{--k-ease:cubic-bezier(.2,.8,.2,1);--k-in:cubic-bezier(.5,0,.75,0);--k-spring:cubic-bezier(.3,1.4,.5,1)}
+@keyframes kscreen{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes kstagger{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes kfanin{from{opacity:0;transform:translateY(46px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes kdealf{from{opacity:.4;transform:translateY(14px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes kdealin{from{opacity:0;transform:translateY(-70px) rotate(-7deg) scale(.88)}to{opacity:1;transform:none}}
+@keyframes kswap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes kgrow{from{transform:scaleX(0)}to{transform:none}}
+@keyframes knudge{50%{transform:translate(3px,-3px)}}
+.kfin{animation:kscreen .42s var(--k-ease) both}
+.kpress{transition:transform .14s var(--k-ease),filter .14s}
+.kpress:active{transform:scale(.97);filter:brightness(1.08)}
+.kstag>*{animation:kstagger .5s var(--k-ease) both}
+.kstag>*:nth-child(1){animation-delay:.04s}.kstag>*:nth-child(2){animation-delay:.09s}.kstag>*:nth-child(3){animation-delay:.14s}.kstag>*:nth-child(4){animation-delay:.19s}
+.kstag>*:nth-child(5){animation-delay:.24s}.kstag>*:nth-child(6){animation-delay:.29s}.kstag>*:nth-child(7){animation-delay:.34s}.kstag>*:nth-child(8){animation-delay:.39s}
+.kfan{animation:kfanin .6s var(--k-spring) both}
+.kdealf{animation:kdealf .34s var(--k-spring) both}
+.kdealin{animation:kdealin .52s var(--k-spring) both}
+.kswap{animation:kswap .3s var(--k-ease) both}
+.knudge{display:inline-block;animation:knudge 1.6s var(--k-ease) infinite}
+a,button,[role=button]{-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+<style>html,body{margin:0;background:#17120f;-webkit-tap-highlight-color:transparent;scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}#kdc-root{width:402px;margin:0 auto}</style>
+</head>
+<body>
+<div id="kdc-root"></div>
+<template id="kdc-tpl">
+
+<div class="kfin" style="position:relative;width:402px;height:844px;overflow:hidden;background:#17120f;font-family:'Figtree',sans-serif;color:#f4e7d0;user-select:none">
+  <div aria-hidden="true" style="position:absolute;width:760px;height:760px;left:-179px;top:-50px;border-radius:50%;background:#1e1713;pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;width:540px;height:540px;left:-69px;top:60px;border-radius:50%;background:rgba(34,26,21,.7);pointer-events:none"></div>
+  <div style="position:absolute;left:6px;top:0;width:390px;height:844px">
+    <p style="position:absolute;left:20px;top:18px;margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:32px;line-height:32px;letter-spacing:.3px;color:#f4e7d0">Kinoo</p>
+    
+    <a href="Final_Perfil.dc.html" aria-label="Tu perfil" style="position:absolute;left:326px;top:14px;width:44px;height:44px;box-sizing:border-box;border-radius:22px;background:#221a15;border:2px solid #ce7e01;display:flex;align-items:center;justify-content:center"><img src="../assets/af0ff6915cfda5a557cef50b14e485d2.svg" alt="" width="22" height="22"></a>
+    <p style="position:absolute;left:20px;top:66px;margin:0;font-family:'Figtree',sans-serif;font-style:italic;font-weight:600;font-size:18px;line-height:22px;color:#f2b544">¿qué mood traes?</p>
+    <a href="Final_Ver.dc.html" style="position:absolute;left:286px;top:63px;height:30px;box-sizing:border-box;padding:0 12px 0 10px;border-radius:15px;background:#221a15;border:1px solid #3a2c22;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#f4e7d0"><img src="../assets/2729392101c1b3e53f9658f549f96ef1.svg" alt="" width="14" height="14">Filtros</a>
+    <div style="position:absolute;left:-14px;top:92px;width:418px;height:160px;transform:rotate(-1.6deg);background:#1a1411;border-top:2px solid #5e0c10;border-bottom:2px solid #5e0c10;box-shadow:0 10px 24px rgba(0,0,0,.45)">
+      <div aria-hidden="true" style="position:absolute;left:0;right:0;top:7px;height:7px;border-radius:2px;opacity:.95;background:repeating-linear-gradient(90deg,transparent 0 6px,#f4e7d0 6px 22px,transparent 22px 30px)"></div>
+      <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:7px;height:7px;border-radius:2px;opacity:.95;background:repeating-linear-gradient(90deg,transparent 0 6px,#f4e7d0 6px 22px,transparent 22px 30px)"></div>
+      <div class="kscroll" style="position:absolute;left:0;right:0;top:20px;bottom:18px;display:flex;overflow-x:auto;overflow-y:hidden;padding-left:22px">
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid transparent;overflow:hidden;"><img src="../assets/448d430c3bbc1484a5e4ae80c6712ba9.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f4e7d0;text-align:center;letter-spacing:.3px;max-width:100px">Todas</span>
+        </div>
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid transparent;overflow:hidden;"><img src="../assets/210d4d00823561d5d5167cc6e47550f7.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f4e7d0;text-align:center;letter-spacing:.3px;max-width:100px">Apagar el cerebro</span>
+        </div>
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid #f2b544;overflow:hidden;box-shadow:0 0 0 3px #1a1411,0 0 18px rgba(242,181,68,.55);transform:scale(1.04)"><img src="../assets/3ae955ccefadbe2176426f0089ead788.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f2b544;text-align:center;letter-spacing:.3px;max-width:100px">Sufrir bonito</span>
+        </div>
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid transparent;overflow:hidden;"><img src="../assets/318ae326d239d9211907d580bac97cdd.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f4e7d0;text-align:center;letter-spacing:.3px;max-width:100px">Escapar un rato</span>
+        </div>
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid transparent;overflow:hidden;"><img src="../assets/74e310a197a9e6f8724753f560fdf3a9.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f4e7d0;text-align:center;letter-spacing:.3px;max-width:100px">Sentir algo</span>
+        </div>
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid transparent;overflow:hidden;"><img src="../assets/0954021303eddc07bc7c0b57e0fdd6cf.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f4e7d0;text-align:center;letter-spacing:.3px;max-width:100px">Salir pensando</span>
+        </div>
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid transparent;overflow:hidden;"><img src="../assets/5ced9fe1b669ac19c3cfd2e77fa61758.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f4e7d0;text-align:center;letter-spacing:.3px;max-width:100px">Solo reírme</span>
+        </div>
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid transparent;overflow:hidden;"><img src="../assets/bf8b70422dc5e9e0f6cf244fac4b7f9e.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f4e7d0;text-align:center;letter-spacing:.3px;max-width:100px">Algo raro</span>
+        </div>
+        <div style="flex:none;width:108px;display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:4px">
+          <div style="width:92px;height:70px;box-sizing:border-box;border-radius:6px;background:#221a15;display:flex;align-items:center;justify-content:center;border:3px solid transparent;overflow:hidden;"><img src="../assets/e45badb7d21707020a133a21f9c39ec5.svg" alt="" width="84" height="64"></div>
+          <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:13px;line-height:13.3px;text-transform:uppercase;color:#f4e7d0;text-align:center;letter-spacing:.3px;max-width:100px">Cine del bueno</span>
+        </div>
+      </div>
+    </div>
+    <img aria-hidden="true" src="../assets/7636f9b458cd5e444a1bb283c3e23ba8.svg" alt="" width="16" height="16" style="position:absolute;left:344px;top:150px;pointer-events:none">
+    <div style="position:absolute;left:20px;top:267px;width:350px;height:454px;box-sizing:border-box;border-radius:26px;border:3px solid #f4e7d0;overflow:hidden;background:#0c0a09"><img src="../assets/8d36ec8e6ab2e36a214159e1cc93d1c6.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 0"></div>
+  </div>
+  <nav style="position:absolute;left:0;top:760px;width:402px;height:84px;box-sizing:border-box;background:#f4e7d0;border-radius:26px 26px 0 0;display:flex;align-items:flex-start;justify-content:space-around;padding:10px 20px 0;z-index:5">
+    <a class="kpress" href="Final_Ver.dc.html" style="width:119px;height:52px;box-sizing:border-box;border-radius:26px;background:#5e0c10;border:2px solid #1a1411;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:14px;color:#f4e7d0"><img src="../assets/55fc1f6c9b4360c066f2b1bb6d61ae7f.svg" alt="" width="20" height="20">Ver</a>
+    <a href="Final_Mazos.dc.html" style="width:92px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-weight:600;font-size:12px;color:#6b5844"><img src="../assets/80d9f6f0ac9895ede8c56a2abce2ab48.svg" alt="" width="20" height="20">Descubrir</a>
+    <div style="width:92px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-weight:600;font-size:12px;color:#6b5844"><img src="../assets/6448a35c89fcd4c9dca572ef5ffc5110.svg" alt="" width="20" height="20">Comunidad</div>
+    <div aria-hidden="true" style="position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#1a1411;opacity:.85"></div>
+  </nav>
+  <div aria-hidden="true" style="position:absolute;inset:0;background:rgba(11,8,5,.72);z-index:20"></div>
+  <div class="kmodal" style="position:absolute;left:30px;width:342px;top:150px;box-sizing:border-box;background:#f4e7d0;color:#1a1411;border-radius:28px;padding:22px 22px 18px;box-shadow:0 20px 40px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;text-align:center;z-index:21"><img src="../assets/60b7c455c473703af25d572c9ad951d8.svg" alt="" width="170" height="125">
+    <p style="margin:6px 0 0;font-family:'Figtree',sans-serif;font-style:italic;font-weight:600;font-size:17px;color:#a8401a">anoche te quedaste dormido</p><p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:34px;line-height:31px;text-transform:uppercase">¿Terminaste Interstellar?</p>
+    <div style="width:100%;margin:12px 0 4px"><div style="display:flex;justify-content:space-between;font-weight:700;font-size:11.5px"><span>Te quedaste en 1:58</span><span>2:49</span></div>
+      <div style="position:relative;height:8px;border-radius:4px;background:rgba(26,20,17,.15);margin:6px 0"><div style="position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:#b83a26;width:69.8%"></div><span style="position:absolute;top:1px;left:11.8%;width:6px;height:6px;border-radius:50%;background:#f2b544;opacity:1"></span><span style="position:absolute;top:1px;left:27.8%;width:6px;height:6px;border-radius:50%;background:#f2b544;opacity:1"></span><span style="position:absolute;top:1px;left:41.4%;width:6px;height:6px;border-radius:50%;background:#f2b544;opacity:1"></span><span style="position:absolute;top:1px;left:53.8%;width:6px;height:6px;border-radius:50%;background:#f2b544;opacity:1"></span><span style="position:absolute;top:1px;left:69.8%;width:6px;height:6px;border-radius:50%;background:#f2b544;opacity:1"></span><span style="position:absolute;top:1px;left:79.3%;width:6px;height:6px;border-radius:50%;background:#f2b544;opacity:0.3"></span><span style="position:absolute;top:1px;left:91.7%;width:6px;height:6px;border-radius:50%;background:#f2b544;opacity:0.3"></span></div>
+      <small style="font-weight:600;font-size:10.5px;color:#8e6f62">Respondiste 5 de 7 momentos clave</small></div>
+    <a class="kpress" href="Final_Ver_Cal1.dc.html" style="width:100%;height:52px;box-sizing:border-box;border-radius:26px;background:#b83a26;border:2px solid #f4e7d0;color:#f4e7d0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:20px;letter-spacing:.5px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;margin:10px 0 8px">Sí, la terminé</a>
+    <a href="Final_Ver.dc.html" style="width:100%;height:46px;box-sizing:border-box;border-radius:23px;border:1.5px solid #1a1411;color:#1a1411;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center">No, me dormí · seguir desde 1:58</a>
+    <a href="Final_Ver.dc.html" style="font-weight:700;font-size:12px;color:#8e6f62;text-decoration:underline;margin-top:12px">Ya no quiero verla</a></div>
+
+</div>
+</template>
+<script type="text/x-dc" id="kdc-logic">
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+<script src="../runtime/preact.min.umd.js"></script>
+<script src="../runtime/kinoo-dc.js"></script>
+</body>
+</html>

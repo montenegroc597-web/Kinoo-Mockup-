@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#17120f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Kinoo · Prototipo v1</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23b83a26'/%3E%3Ccircle cx='50' cy='50' r='34' fill='%23f2b544'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23f4e7d0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Figtree:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cafe:#3b291e; --cafe-2:#2a1c14; --ink:#17120f; --cream:#f4e7d0; --sand:#d9c7a8;
+  --muted:#bfa98a; --line:#5a4838; --wine:#5e0c10; --sun:#f2b544;
+  --pw:402px; --ph:844px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden}
+body{
+  font-family:'Figtree',system-ui,sans-serif;color:var(--cream);
+  background:radial-gradient(120% 90% at 50% 35%, #4a3426 0%, var(--cafe) 45%, var(--cafe-2) 100%);
+}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.phone{
+  position:relative;width:calc(var(--pw) + 28px);height:calc(var(--ph) + 28px);
+  padding:14px;border-radius:64px;background:#0d0a08;
+  box-shadow:0 0 0 2px #5a4838, 0 0 0 9px #241811, 0 40px 90px rgba(0,0,0,.55), 0 12px 30px rgba(0,0,0,.4);
+  transform-origin:center center;flex:none;
+}
+.screen{position:relative;width:var(--pw);height:var(--ph);border-radius:50px;overflow:hidden;background:var(--ink)}
+.screen iframe{display:block;width:var(--pw);height:var(--ph);border:0;background:var(--ink)}
+.side{
+  position:fixed;left:40px;top:50%;transform:translateY(-50%);width:230px;
+  display:flex;flex-direction:column;gap:18px
+}
+.brand{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:52px;line-height:44px;letter-spacing:.5px;margin:0}
+.kicker{margin:0;font-style:italic;font-weight:600;font-size:16px;color:var(--sun)}
+.note{margin:0;font-weight:500;font-size:13.5px;line-height:19px;color:var(--sand)}
+.nav{display:flex;flex-direction:column;gap:8px}
+.nav button{
+  font:inherit;font-weight:700;font-size:14px;color:var(--cream);cursor:pointer;text-align:left;
+  height:44px;padding:0 16px;border-radius:22px;border:1.5px solid var(--line);background:rgba(23,18,15,.35);
+  transition:border-color .2s, background .2s, transform .15s cubic-bezier(.3,1.4,.5,1)
+}
+.nav button:hover{border-color:var(--cream)}
+.nav button:active{transform:scale(.97)}
+.nav button[aria-current="true"]{border-color:var(--cream);background:var(--wine)}
+.nav .sep{height:1px;background:var(--line);margin:6px 0}
+.foot{position:fixed;right:40px;bottom:28px;font-weight:600;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+@media (max-width:900px){ .side,.foot{display:none} }
+
+/* Celular: la app ocupa la pantalla */
+body.mobile{background:var(--ink)}
+body.mobile .phone{padding:0;border-radius:0;background:var(--ink);box-shadow:none;width:var(--pw);height:var(--ph)}
+body.mobile .screen{border-radius:0}
+body.mobile .side, body.mobile .foot{display:none}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone" id="phone">
+    <div class="screen">
+      <iframe id="app" title="Prototipo Kinoo" src="screens/Final_Mazos.dc.html" allow="autoplay"></iframe>
+    </div>
+  </div>
+</div>
+
+<aside class="side" aria-label="Navegación del prototipo">
+  <div>
+    <p class="kicker">prototipo final · v1</p>
+    <h1 class="brand">Kinoo</h1>
+  </div>
+  <p class="note">Toca, desliza y arrastra como en el celular. Con el mouse, haz clic y arrastra las cartas.</p>
+  <nav class="nav">
+    <button data-go="Final_Mazos.dc.html">Descubrir · mazos</button>
+    <button data-go="Final_Ver.dc.html">Ver · esta noche</button>
+    <button data-go="Final_Perfil.dc.html">Perfil</button>
+    <div class="sep"></div>
+    <button data-go="Final_Ver_Push.dc.html">Notificación (fuera de la app)</button>
+    <button id="restart">↺ Reiniciar</button>
+  </nav>
+</aside>
+<p class="foot">Kinoo · 2026</p>
+
+<script>
+(function () {
+  var PW = 402, PH = 844;
+  var phone = document.getElementById('phone');
+  var app = document.getElementById('app');
+  var mobile = window.matchMedia('(pointer:coarse)').matches && Math.min(screen.width, screen.height) < 700;
+  if (mobile) document.body.classList.add('mobile');
+
+  function fit() {
+    var vw = window.innerWidth, vh = window.innerHeight, s;
+    if (mobile) {
+      s = Math.min(vw / PW, vh / PH);
+    } else {
+      var w = PW + 28 + 18, hh = PH + 28 + 18, pad = 48;
+      s = Math.min(1, (vh - pad) / hh, (vw - pad) / w);
+      // deja espacio para el panel lateral si cabe
+      if (vw > 900) s = Math.min(s, (vw - 560) / w > 0.5 ? 1 : s);
+    }
+    phone.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', function () { setTimeout(fit, 200); });
+  fit();
+
+  var btns = [].slice.call(document.querySelectorAll('[data-go]'));
+  function mark() {
+    var cur = '';
+    try { cur = app.contentWindow.location.pathname.split('/').pop(); } catch (e) {}
+    btns.forEach(function (b) { b.setAttribute('aria-current', b.dataset.go === cur ? 'true' : 'false'); });
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { app.src = 'screens/' + b.dataset.go; });
+  });
+  document.getElementById('restart').addEventListener('click', function () {
+    app.src = 'screens/Final_Mazos.dc.html?r=' + Date.now();
+  });
+  app.addEventListener('load', mark);
+})();
+</script>
+</body>
+</html>
