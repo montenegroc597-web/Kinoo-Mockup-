@@ -68,33 +68,32 @@ a,button,[role=button]{-webkit-tap-highlight-color:transparent}
 
       <div style="width:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:14px;padding:22px 20px 14px;overflow:hidden">
         <div style="width:100%;text-align:center;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:40px;line-height:0.94;text-transform:uppercase;color:#1a1411">
-          <p style="margin:0">Lentas y</p>
-          <p style="margin:0">melancólicas</p>
+          <p style="margin:0">{{title}}</p>
         </div>
 
         <div style="position:relative;flex:none;width:310px;height:207px">
           <div style="position:absolute;left:7px;top:4.87px;width:146.306px;height:189.01px;display:flex;align-items:center;justify-content:center">
             <div style="flex:none;transform:rotate(-11deg)">
               <div style="box-sizing:border-box;width:116px;height:170px;padding:3px;border-radius:5px;background:#1a1411;box-shadow:0 7px 12px rgba(0,0,0,0.33);overflow:hidden">
-                <img src="../assets/47a12c3c151f8da9df8a65897c8a3b7b.jpg" alt="La La Land" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:2px">
+                <img src="{{p1.img}}" alt="{{p1.t}}" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:2px">
               </div>
             </div>
           </div>
           <div style="position:absolute;left:163.48px;top:12px;width:143.758px;height:187.561px;display:flex;align-items:center;justify-content:center">
             <div style="flex:none;transform:rotate(10deg)">
               <div style="box-sizing:border-box;width:116px;height:170px;padding:3px;border-radius:5px;background:#1a1411;box-shadow:0 7px 12px rgba(0,0,0,0.33);overflow:hidden">
-                <img src="../assets/898b391b9a5eaba68df05fef307a6e56.jpg" alt="Project Hail Mary" style="display:block;width:100%;height:100%;object-fit:cover;object-position:42% 50%;border-radius:2px">
+                <img src="{{p2.img}}" alt="{{p2.t}}" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:2px">
               </div>
             </div>
           </div>
           <div style="position:absolute;left:90px;top:3px;box-sizing:border-box;width:130px;height:191px;padding:3px;border-radius:5px;background:#1a1411;box-shadow:0 7px 12px rgba(0,0,0,0.33);overflow:hidden">
             <div style="position:relative;width:100%;height:100%;border-radius:2px;overflow:hidden">
-              <img src="../assets/665a0569e72a0a72bc75b7aed03e2424.jpg" alt="tick, tick... BOOM!" style="position:absolute;left:-6.26%;top:-6.15%;width:111.9%;height:111.95%;max-width:none">
+              <img src="{{p0.img}}" alt="{{p0.t}}" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover">
             </div>
           </div>
         </div>
 
-        <p style="margin:0;width:100%;font-family:'Figtree',sans-serif;font-style:italic;font-weight:600;font-size:19px;line-height:24px;text-align:center;color:#1a1411">Hoy te movieron las historias grandes y serias.</p>
+        <p style="margin:0;width:100%;font-family:'Figtree',sans-serif;font-style:italic;font-weight:600;font-size:19px;line-height:24px;text-align:center;color:#1a1411">{{line}}</p>
       </div>
 
       <!-- Troquel -->
@@ -108,15 +107,15 @@ a,button,[role=button]{-webkit-tap-highlight-color:transparent}
         <div style="width:100%;display:flex;align-items:center;justify-content:center;gap:30px">
           <div style="display:flex;align-items:center;gap:8px">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.2" stroke="#d9541f" stroke-width="2.6"/></svg>
-            <p style="margin:0;font-weight:700;font-size:16px;line-height:normal;color:#1a1411">3</p>
+            <p style="margin:0;font-weight:700;font-size:16px;line-height:normal;color:#1a1411">{{nW}}</p>
           </div>
           <div style="display:flex;align-items:center;gap:8px">
             <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.8" fill="#1a1411"/></svg>
-            <p style="margin:0;font-weight:700;font-size:16px;line-height:normal;color:#1a1411">1</p>
+            <p style="margin:0;font-weight:700;font-size:16px;line-height:normal;color:#1a1411">{{nS}}</p>
           </div>
           <div style="display:flex;align-items:center;gap:8px;color:#1a1411">
             <p style="margin:0;font-weight:400;font-size:19px;line-height:normal">✕</p>
-            <p style="margin:0;font-weight:700;font-size:16px;line-height:normal">6</p>
+            <p style="margin:0;font-weight:700;font-size:16px;line-height:normal">{{nP}}</p>
           </div>
         </div>
         <div style="display:flex;justify-content:center;gap:2px;height:18px" aria-hidden="true">
@@ -138,7 +137,24 @@ a,button,[role=button]{-webkit-tap-highlight-color:transparent}
 </template>
 <script type="text/x-dc" id="kdc-logic">
 class Component extends DCLogic {
-renderVals() { return {}; }
+_deckIx() { try { const v = parseInt(window.localStorage.getItem('kinoo.deck'), 10); return v >= 0 && v < 3 ? v : 0; } catch (_) { return 0; } }
+_res() { try { const o = JSON.parse(window.localStorage.getItem('kinoo.res') || 'null'); return o && o.d === this._deckIx() && Array.isArray(o.r) && o.r.length ? o.r : null; } catch (_) { return null; } }
+_sum() {
+  const D = [{"title":"Para llorar bonito","theme":"Despedidas que abrazan","summary":"En tus elecciones se repiten despedidas, familias que se eligen y amores que no alcanzaron. Este mazo celebra lo que se queda.","line":"Hay despedidas que también son abrazos.","ticket":"Hoy te movieron las despedidas.","aff":[["Despedidas",5],["Familia elegida",4],["Amor a destiempo",3]],"films":[{"id":"robot","t":"Robot salvaje","img":"../assets/9fbaad203f3fe82fa4f9cdbfb2f69e3c.jpg"},{"id":"her","t":"Her","img":"../assets/a8e3a123c957ecab03c0064c9784365d.jpg"},{"id":"toystory3","t":"Toy Story 3","img":"../assets/303d601294b204ae47044fbaf8889753.jpg"},{"id":"coco","t":"Coco","img":"../assets/835e4fdd55dd260b350950e4874297a9.jpg"},{"id":"titanic","t":"Titanic","img":"../assets/6ffb31d0f49ae2b65b844ee3350dcb3b.jpg"},{"id":"novia","t":"El cadáver de la novia","img":"../assets/04ddf7d4af0d85785462f8a564cb5c98.jpg"},{"id":"balboa","t":"Rocky Balboa","img":"../assets/8cfbfb4f6496ba64b79bc7d8ba267f52.jpg"},{"id":"hailmary","t":"Fin del Mundo","img":"../assets/58a51b8c46cb57a1527442eac2fa8f00.jpg"},{"id":"eeaao","t":"Todo en todas partes","img":"../assets/22037a4748403261649cf650946d28ca.jpg"},{"id":"padrino3","t":"El Padrino III","img":"../assets/4bf6fa6ea35486e09de4d353df3e38ec.jpg"}]},{"title":"Mundos al borde del fin","theme":"El peso del elegido","summary":"En tus elecciones aparecen elegidos, futuros que hay que corregir y mundos a punto de caer. Este mazo celebra a quien carga con todo.","line":"Siempre hay alguien que carga con el mundo.","ticket":"Hoy elegiste mundos al límite.","aff":[["Destino",5],["Futuros rotos",4],["Héroes cansados",3]],"films":[{"id":"dune","t":"Dune","img":"../assets/9573c13f985149da157954b6a081cf1f.jpg"},{"id":"matrix","t":"Matrix","img":"../assets/c7cf6f2dd558a8d1689c4180a9a6c8d0.jpg"},{"id":"terminator","t":"Terminator","img":"../assets/10e84e61d6e452f9d0cc0e7887b3e95a.jpg"},{"id":"xmen","t":"Días del futuro pasado","img":"../assets/15d276fc3093331a6540322811264eb2.jpg"},{"id":"mickey","t":"Mickey 17","img":"../assets/3666c0c942517c16dc1d43a68f8aec74.jpg"},{"id":"watchmen","t":"Watchmen","img":"../assets/d04989f943a61cefa250cfab12f805ff.jpg"},{"id":"superman","t":"Superman","img":"../assets/1fa53a0d1b3ca5dc1aac0b4ae72a985d.jpg"},{"id":"wwz","t":"Guerra Mundial Z","img":"../assets/e7f73487294cb238033203c0fbafdd91.jpg"},{"id":"tdk","t":"El caballero de la noche","img":"../assets/66900b321db1f062d0128467d0e5752c.jpg"},{"id":"mk1","t":"Mortal Kombat","img":"../assets/8f370ef20b2471d54a7ec349a33cf7d5.jpg"}]},{"title":"Lo que guardaron Ana y Leo","theme":"Miedo que se queda","summary":"En tus elecciones se repiten casas que asustan, familias con secretos y males que se heredan. Este mazo celebra el miedo bien hecho.","line":"El miedo también es una forma de compañía.","ticket":"Hoy elegiste el miedo bien hecho.","aff":[["Familias con secretos",5],["Males heredados",4],["Lugares que asustan",3]],"films":[{"id":"acecha","t":"Cuando acecha la maldad","img":"../assets/4c1b4a59659db5db7069a292d9d749e5.jpg"},{"id":"hereditary","t":"El legado del diablo","img":"../assets/3ec4e23d90e08b95c83d177461e77b5c.jpg"},{"id":"resplandor","t":"El resplandor","img":"../assets/1d39daa246925914d12f6ba96c33be31.jpg"},{"id":"getout","t":"¡Huye!","img":"../assets/b164a4d987a9ee4aae8cc3f5838d1f9d.jpg"},{"id":"exorcista","t":"El exorcista","img":"../assets/1bad5f3021bcb61d65f6f032aa38eb84.jpg"},{"id":"nosferatu","t":"Nosferatu","img":"../assets/559e84b3d31941c96393966e19b9c566.jpg"},{"id":"sinners","t":"Pecadores","img":"../assets/21604378bddbf76583a6155e67cc7ec1.jpg"},{"id":"halloween","t":"Halloween","img":"../assets/3afa20d1a4b0868267f1c59b42fba8ea.jpg"},{"id":"smile","t":"Sonríe","img":"../assets/029cd50651052ca171f0734960628b17.jpg"},{"id":"papa","t":"El exorcista del papa","img":"../assets/7d8562d25906ec612fec4c3ee8b14bb6.jpg"}]}];
+  const ix = this._deckIx(), d = D[ix];
+  const def = ['want', 'pass', 'want', 'seen', 'pass', 'want', 'pass', 'pass', 'want', 'pass'];
+  const r = this._res() || def;
+  const want = [], seen = [];
+  r.forEach((k, i) => { if (!d.films[i]) return; if (k === 'want') want.push(d.films[i]); if (k === 'seen') seen.push(d.films[i]); });
+  const nW = want.length, nS = seen.length, nP = r.filter((k) => k === 'pass').length, nC = nW + nS;
+  const pool = want.concat(seen).length ? want.concat(seen) : d.films.slice(0, 3);
+  return { d, ix, nW, nS, nP, nC, want, pool };
+}
+renderVals() {
+  const M = this._sum();
+  const p = M.pool.concat(M.d.films).slice(0, 3);
+  return { title: M.d.title, line: M.d.ticket, nW: M.nW, nS: M.nS, nP: M.nP, p0: p[0], p1: p[1], p2: p[2] };
+}
 }
 </script>
 <script src="../runtime/preact.min.umd.js"></script>

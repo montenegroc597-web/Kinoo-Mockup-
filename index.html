@@ -76,6 +76,7 @@ body.mobile .side, body.mobile .foot{display:none}
   <nav class="nav">
     <button data-go="Final_Mazos.dc.html">Descubrir · mazos</button>
     <button data-go="Final_Ver.dc.html">Ver · esta noche</button>
+    <button data-go="Final_Mini4.dc.html">Minijuegos</button>
     <button data-go="Final_Perfil.dc.html">Perfil</button>
     <div class="sep"></div>
     <button data-go="Final_Ver_Push.dc.html">Notificación (fuera de la app)</button>
@@ -118,6 +119,7 @@ body.mobile .side, body.mobile .foot{display:none}
     b.addEventListener('click', function () { app.src = 'screens/' + b.dataset.go; });
   });
   document.getElementById('restart').addEventListener('click', function () {
+    try { localStorage.removeItem('kinoo.deck'); localStorage.removeItem('kinoo.res'); localStorage.removeItem('kinoo.game'); } catch (e) {}
     app.src = 'screens/Final_Mazos.dc.html?r=' + Date.now();
   });
   app.addEventListener('load', mark);

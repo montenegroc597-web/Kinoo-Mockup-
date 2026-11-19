@@ -103,7 +103,7 @@ a,button,[role=button]{-webkit-tap-highlight-color:transparent}
 
     <div class="kstag" style="flex:none;width:350px;display:flex;flex-direction:column;gap:6px;text-align:center">
       <p style="margin:0;font-style:italic;font-weight:600;font-size:16px;line-height:22px;color:#f2b544">tu mazo está listo</p>
-      <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:44px;line-height:40.5px;text-transform:uppercase;color:#f4e7d0">Lentas y melancólicas</p>
+      <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:44px;line-height:40.5px;text-transform:uppercase;color:#f4e7d0">{{title}}</p>
       <p style="margin:0;font-weight:400;font-size:14px;line-height:17px;color:#d9c7a8">10 cartas · y una de ellas es especial</p>
     </div>
 
@@ -133,7 +133,8 @@ a,button,[role=button]{-webkit-tap-highlight-color:transparent}
 </template>
 <script type="text/x-dc" id="kdc-logic">
 class Component extends DCLogic {
-renderVals() { return {}; }
+_deckIx() { try { const v = parseInt(window.localStorage.getItem('kinoo.deck'), 10); return v >= 0 && v < 3 ? v : 0; } catch (_) { return 0; } }
+renderVals() { const T = ["Para llorar bonito","Mundos al borde del fin","Lo que guardaron Ana y Leo"]; return { title: T[this._deckIx()] }; }
 }
 </script>
 <script src="../runtime/preact.min.umd.js"></script>

@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=402, user-scalable=no">
+<title>Kinoo · Minijuego — Ronda rápida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Figtree:ital,wght@0,400;0,600;0,700;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{text-decoration:none;color:inherit}
+@keyframes kpop{0%{transform:scale(1)}35%{transform:scale(1.045)}100%{transform:scale(1)}}
+@keyframes kin{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@keyframes kpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes kfill{from{width:0}to{width:100%}}
+@keyframes krise{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:none}}
+@keyframes ktw{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes kshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.kpop{animation:kpop 380ms ease-out}
+.kin{animation:kin 320ms ease-out both}
+.kpulse{animation:kpulse 700ms ease-in-out infinite}
+.krise{animation:krise 900ms cubic-bezier(.2,.85,.25,1) both}
+.ktw{animation:ktw 1.4s ease-in-out infinite}
+.kshake{animation:kshake 260ms ease-in-out 2}
+.kfill{animation:kfill 2300ms linear both}
+
+/* ---- Kinoo · motion v1 ---- */
+:root{--k-ease:cubic-bezier(.2,.8,.2,1);--k-in:cubic-bezier(.5,0,.75,0);--k-spring:cubic-bezier(.3,1.4,.5,1)}
+@keyframes kscreen{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes kstagger{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes kfanin{from{opacity:0;transform:translateY(46px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes kdealf{from{opacity:.4;transform:translateY(14px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes kdealin{from{opacity:0;transform:translateY(-70px) rotate(-7deg) scale(.88)}to{opacity:1;transform:none}}
+@keyframes kswap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes kgrow{from{transform:scaleX(0)}to{transform:none}}
+@keyframes knudge{50%{transform:translate(3px,-3px)}}
+.kfin{animation:kscreen .42s var(--k-ease) both}
+.kpress{transition:transform .14s var(--k-ease),filter .14s}
+.kpress:active{transform:scale(.97);filter:brightness(1.08)}
+.kstag>*{animation:kstagger .5s var(--k-ease) both}
+.kstag>*:nth-child(1){animation-delay:.04s}.kstag>*:nth-child(2){animation-delay:.09s}.kstag>*:nth-child(3){animation-delay:.14s}.kstag>*:nth-child(4){animation-delay:.19s}
+.kstag>*:nth-child(5){animation-delay:.24s}.kstag>*:nth-child(6){animation-delay:.29s}.kstag>*:nth-child(7){animation-delay:.34s}.kstag>*:nth-child(8){animation-delay:.39s}
+.kfan{animation:kfanin .6s var(--k-spring) both}
+.kdealf{animation:kdealf .34s var(--k-spring) both}
+.kdealin{animation:kdealin .52s var(--k-spring) both}
+.kswap{animation:kswap .3s var(--k-ease) both}
+.knudge{display:inline-block;animation:knudge 1.6s var(--k-ease) infinite}
+a,button,[role=button]{-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+<style>html,body{margin:0;background:#17120f;-webkit-tap-highlight-color:transparent;scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}#kdc-root{width:402px;margin:0 auto}</style>
+</head>
+<body>
+<div id="kdc-root"></div>
+<template id="kdc-tpl">
+
+<div class="kfin" ref="{{setRoot}}" style="position:relative;width:402px;height:844px;overflow:hidden;background:#17120f;font-family:'Figtree',sans-serif;color:#f4e7d0">
+
+  <div style="position:absolute;left:6px;top:0;width:390px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;padding:14px 20px 6px 20px">
+    <a href="Final_Resumen.dc.html" aria-label="Volver" style="display:flex;align-items:center;height:44px">
+      <svg width="33" height="24" viewBox="0 0 33 24" fill="none" stroke="#f4e7d0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M31 12H2.5"/><path d="M11.5 3 2.5 12l9 9"/></svg>
+    </a>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="box-sizing:border-box;border:1px solid #8a7458;border-radius:15px;padding:8px 13px;display:flex">
+        <p style="margin:0;font-weight:600;font-size:12px;line-height:14px;letter-spacing:1.2px;text-transform:uppercase;color:#d9c7a8;white-space:nowrap">Fin del mazo</p>
+      </div>
+      <div style="width:44px;height:44px;box-sizing:border-box;border:2px solid #ce7e01;border-radius:22px;background:#221a15;display:flex;align-items:center;justify-content:center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f4e7d0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21v-1a5.5 5.5 0 0 1 5.5-5.5h4a5.5 5.5 0 0 1 5.5 5.5v1"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:29px;top:96px;width:350px;display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;align-items:center;justify-content:space-between;width:100%">
+      <p style="margin:0;font-style:italic;font-weight:600;font-size:16px;line-height:22px;color:#f2b544;white-space:nowrap">ronda rápida · 15 s</p>
+      <div class="{{timeCls}}" style="display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:12px;background:{{timeBg}};transition:background 200ms ease">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{timeInk}}" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9.5 2.5h5"/></svg>
+        <p style="margin:0;font-weight:800;font-size:14px;line-height:15px;color:{{timeInk}};white-space:nowrap">{{timeLabel}}</p>
+      </div>
+    </div>
+    <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:40px;line-height:40px;text-transform:uppercase;color:#f4e7d0">¿Ya la viste?</p>
+    <p style="margin:0;font-weight:600;font-size:13px;line-height:17px;color:#d9c7a8">Cinco pósters. Responde rápido y no te mostramos lo que ya conoces.</p>
+  </div>
+
+  <!-- Pila de pósters -->
+  <div style="position:absolute;left:101px;top:236px;width:200px;height:300px">
+    <sc-if value="{{hasNext}}" hint-placeholder-val="{{ true }}"><img src="{{nx.img}}" alt="" draggable="false" style="position:absolute;left:0;top:0;width:200px;height:300px;object-fit:cover;border-radius:14px;transform:translate(14px,8px) rotate(5deg);filter:brightness(.45);box-shadow:0 10px 20px rgba(0,0,0,.5)"></sc-if>
+    <sc-if value="{{showCur}}" hint-placeholder-val="{{ true }}">
+    <div class="{{dealCls}}" style="position:absolute;left:0;top:0;width:200px;height:300px;box-sizing:border-box;border:3px solid #f4e7d0;border-radius:14px;overflow:hidden;background:#221a15;box-shadow:0 18px 30px rgba(0,0,0,.6)">
+      <img src="{{cur.img}}" alt="{{cur.t}}" draggable="false" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to bottom,rgba(23,18,15,0),rgba(23,18,15,.95))"></div>
+      <div style="position:absolute;left:10px;top:10px;padding:4px 9px;border-radius:10px;background:#f4e7d0"><p style="margin:0;font-weight:800;font-size:11px;line-height:13px;color:#1a1411;white-space:nowrap">{{pos}}</p></div>
+      <p style="position:absolute;left:12px;right:12px;bottom:12px;margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:24px;line-height:23px;text-transform:uppercase;color:#f4e7d0">{{cur.t}} <span style="font-family:'Figtree',sans-serif;font-weight:700;font-size:12px;color:#d9c7a8">{{cur.y}}</span></p>
+    </div>
+    </sc-if>
+    <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+    <div class="kpop" style="position:absolute;left:-30px;top:40px;width:260px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-radius:20px;background:#5e0c10;border:3px solid #f4e7d0">
+      <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:76px;line-height:70px;color:#f2b544">{{nSeen}}<span style="font-size:34px;color:#f4e7d0"> de 5</span></p>
+      <p style="margin:0;font-weight:700;font-size:13px;color:#f4e7d0">ya las viste</p>
+    </div>
+    </sc-if>
+  </div>
+  <button class="kpress" onClick="{{no}}" style="position:absolute;left:26px;top:556px;width:170px;height:56px;box-sizing:border-box;border:2px solid #8a7458;border-radius:28px;background:#221a15;opacity:{{btnOp}};display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer">
+    <span style="font-size:18px;color:#f4e7d0">✕</span><span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:21px;text-transform:uppercase;color:#f4e7d0">No la vi</span>
+  </button>
+  <button class="kpress" onClick="{{yes}}" style="position:absolute;left:206px;top:556px;width:170px;height:56px;box-sizing:border-box;border:2px solid #1a1411;border-radius:28px;background:#f2b544;opacity:{{btnOp}};display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer">
+    <span style="font-size:18px;color:#1a1411">✓</span><span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:21px;text-transform:uppercase;color:#1a1411">Ya la vi</span>
+  </button>
+  <div style="position:absolute;left:26px;top:628px;width:350px;display:flex;justify-content:center;gap:10px">
+    <sc-for list="{{trail}}" as="r" hint-placeholder-count="5">
+      <div style="position:relative;width:34px;height:51px;box-sizing:border-box;border-radius:6px;overflow:hidden;border:1.5px solid {{r.bc}};background:#2a1d18;opacity:{{r.op}}">
+        <img src="{{r.img}}" alt="" draggable="false" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;filter:brightness({{r.br}})">
+        <span style="position:absolute;left:0;right:0;top:14px;text-align:center;font-weight:800;font-size:16px;color:{{r.ink}}">{{r.mark}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="position:absolute;left:28px;top:698px;width:350px;display:flex;align-items:flex-start;justify-content:space-between;line-height:15px;white-space:nowrap">
+    <p style="margin:0;font-weight:600;font-size:12.5px;color:#d9c7a8">Un juego distinto al cerrar cada mazo</p>
+    <a href="Final_Mazos.dc.html" style="font-weight:700;font-size:13px;color:#f4e7d0;text-decoration:underline">Omitir</a>
+  </div>
+  <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+  <a class="kpress" href="Final_Mazos.dc.html" style="position:absolute;left:29px;top:733px;width:350px;height:58px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid #f4e7d0;border-radius:29px;background:#5e0c10">
+    <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:24px;line-height:normal;text-transform:uppercase;color:#f4e7d0;white-space:nowrap">{{ctaLabel}}</span>
+  </a>
+  </sc-if>
+  <sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
+  <div aria-disabled="true" style="position:absolute;left:29px;top:733px;width:350px;height:58px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid #8a7458;border-radius:29px;background:#2a1d18;opacity:0.6">
+    <span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:24px;line-height:normal;text-transform:uppercase;color:#d9c7a8;white-space:nowrap">responde las 5</span>
+  </div>
+  </sc-if>
+
+  <!-- Tiempo restante (barra superior) -->
+  <div aria-hidden="true" style="position:absolute;left:0;top:0;width:402px;height:5px;background:rgba(244,231,208,0.12);z-index:5"><div style="height:5px;width:{{timeW}}%;background:{{barBg}};transition:width 1s linear,background 200ms ease"></div></div>
+  <!-- Feedback de la acción -->
+  <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+  <div class="kin" role="status" style="position:absolute;left:26px;top:70px;width:350px;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:{{toastBg}};border:2px solid #f4e7d0;box-shadow:0 10px 24px rgba(0,0,0,0.45);z-index:6">
+    <svg class="ktw" style="flex:none" width="22" height="22" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l1.8 6.2L16 8l-6.2 1.8L8 16l-1.8-6.2L0 8l6.2-1.8Z" fill="#f2b544"/></svg>
+    <div style="flex:1;min-width:0">
+      <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:21px;line-height:21px;text-transform:uppercase;color:#f4e7d0">{{toastTitle}}</p>
+      <p style="margin:3px 0 0;font-weight:600;font-size:12.5px;line-height:16px;color:#e6d3b3">{{toastText}}</p>
+    </div>
+  </div>
+  </sc-if>
+  <!-- Carga: ven, vamos a preguntarte algo -->
+  <sc-if value="{{introOn}}" hint-placeholder-val="{{ false }}">
+  <button onClick="{{skipIntro}}" aria-label="Empezar ya" style="position:absolute;left:0;top:0;width:402px;height:844px;padding:0;border:0;margin:0;background:#17120f;z-index:40;cursor:pointer;text-align:left;font:inherit;color:inherit;opacity:{{introOp}};transition:opacity 340ms ease;overflow:hidden">
+    <svg class="krise" style="position:absolute;left:-49px;top:480px" width="500" height="500" viewBox="0 0 500 500" aria-hidden="true"><circle cx="250" cy="250" r="250" fill="#5e0c10"/><circle cx="250" cy="250" r="200" fill="#b83a26"/><circle cx="250" cy="250" r="150" fill="#e8642c"/><circle cx="250" cy="250" r="100" fill="#f2b544"/><circle cx="250" cy="250" r="50" fill="#f4e7d0"/></svg>
+    <svg class="ktw" style="position:absolute;left:330px;top:110px" width="22" height="22" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l1.8 6.2L16 8l-6.2 1.8L8 16l-1.8-6.2L0 8l6.2-1.8Z" fill="#f2b544"/></svg>
+    <svg class="ktw" style="position:absolute;left:44px;top:96px;animation-delay:.5s" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l1.8 6.2L16 8l-6.2 1.8L8 16l-1.8-6.2L0 8l6.2-1.8Z" fill="#f2b544"/></svg>
+    <svg class="ktw" style="position:absolute;left:300px;top:418px;animation-delay:.9s" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l1.8 6.2L16 8l-6.2 1.8L8 16l-1.8-6.2L0 8l6.2-1.8Z" fill="#f2b544"/></svg>
+    <div style="position:absolute;left:26px;top:150px;width:350px;display:flex;flex-direction:column;align-items:flex-start;gap:10px">
+      <p style="margin:0;font-style:italic;font-weight:600;font-size:18px;line-height:24px;color:#f2b544">antes de tu próximo mazo…</p>
+      <p style="margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:62px;line-height:56px;text-transform:uppercase;color:#f4e7d0">Ven, vamos a preguntarte algo</p>
+      <p style="margin:0;font-weight:600;font-size:15px;line-height:20px;color:#d9c7a8">Cinco pósters · 15 segundos · sin respuestas malas</p>
+      <div style="margin-top:4px;box-sizing:border-box;border:1.5px solid #f4e7d0;border-radius:14px;padding:6px 12px"><p style="margin:0;font-weight:800;font-size:12px;line-height:14px;letter-spacing:1.2px;text-transform:uppercase;color:#f4e7d0;white-space:nowrap">Ronda rápida</p></div>
+    </div>
+    <div style="position:absolute;left:26px;top:440px;width:350px;height:6px;border-radius:3px;background:rgba(244,231,208,0.15);overflow:hidden"><div class="kfill" style="height:6px;border-radius:3px;background:#f2b544"></div></div>
+    <p style="position:absolute;left:26px;top:456px;margin:0;font-weight:600;font-size:12px;line-height:14px;color:#bfa98a">toca para empezar ya</p>
+  </button>
+  </sc-if>
+</div>
+</template>
+<script type="text/x-dc" id="kdc-logic">
+class Component extends DCLogic {
+renderVals() {
+  const S = this.state || {};
+  const C = this._common(S);
+  const FL = [{"id":"matrix","t":"Matrix","img":"../assets/c7cf6f2dd558a8d1689c4180a9a6c8d0.jpg","y":1999},{"id":"shrek2","t":"Shrek 2","img":"../assets/25be67f32a2ae67d3650a6ce065b7b08.jpg","y":2004},{"id":"titanic","t":"Titanic","img":"../assets/6ffb31d0f49ae2b65b844ee3350dcb3b.jpg","y":1997},{"id":"getout","t":"¡Huye!","img":"../assets/b164a4d987a9ee4aae8cc3f5838d1f9d.jpg","y":2017},{"id":"ratatouille","t":"Ratatouille","img":"../assets/958c89c67b186ad915984e6d2770ea26.jpg","y":2007}];
+  const ans = S.ans || [];
+  const i = Math.min(ans.length, FL.length - 1);
+  const answer = (v) => () => {
+    const s = this.state || {};
+    if (s.done || s.phase !== 'play') return;
+    const a = (s.ans || []).concat([v]);
+    this.setState({ ans: a, deal: '' });
+    if (a.length >= FL.length) { this._finish('pick'); return; }
+    setTimeout(() => this.setState({ deal: 'kdealin' }), 16);
+  };
+  const nSeen = ans.filter((v) => v).length;
+  return Object.assign(C, {
+    cur: FL[i], nx: FL[i + 1] || FL[i], hasNext: !C.isDone && i < FL.length - 1, showCur: !C.isDone,
+    pos: (i + 1) + ' de ' + FL.length, dealCls: S.deal || '',
+    yes: answer(true), no: answer(false), btnOp: C.isDone ? 0.35 : 1, nSeen,
+    trail: FL.map((f, k) => { const a = ans[k]; const has = k < ans.length;
+      return { img: f.img, op: has || k === i ? 1 : 0.35, bc: has ? (a ? '#f2b544' : '#8a7458') : (k === i && !C.isDone ? '#f4e7d0' : '#5a4838'),
+        br: has ? 0.45 : 1, mark: has ? (a ? '✓' : '✕') : '', ink: a ? '#f2b544' : '#f4e7d0' }; }),
+    toastTitle: C.timedOut ? 'Se acabó el tiempo' : (nSeen ? 'Viste ' + nSeen + ' de 5' : 'Todas nuevas para ti'),
+    toastText: C.timedOut ? 'Guardamos lo que alcanzaste a responder.' : (nSeen ? 'Las sacamos de tus próximos mazos. Las otras, adentro.' : 'Las sumamos a tus próximos mazos.')
+  });
+}
+_T() { return 15; } // segundos de este minijuego
+_resetGame() { return { ans: [], deal: 'kdealin' }; }
+
+// ——— Motor común de minijuego: carga → tiempo → feedback ———
+// Arranca cada vez que la pantalla entra en vista (y se detiene al salir).
+_begin() {
+  this._live = true; this._clear();
+  this.setState(Object.assign({ phase: 'intro', introOut: false, left: this._T(), done: null, runAt: 0 }, this._resetGame()));
+  this._ti1 = setTimeout(() => this.setState({ introOut: true }), 2300);
+  this._ti2 = setTimeout(() => this._play(), 2650);
+}
+_play() {
+  clearTimeout(this._ti1); clearTimeout(this._ti2);
+  if ((this.state || {}).phase === 'play') return;
+  this.setState({ phase: 'play', introOut: true, runAt: Date.now(), left: this._T() });
+  clearInterval(this._iv);
+  this._iv = setInterval(() => {
+    const s = this.state || {};
+    if (s.done || s.phase !== 'play') { clearInterval(this._iv); return; }
+    const left = Math.max(0, this._T() - Math.floor((Date.now() - s.runAt) / 1000));
+    if (left !== s.left) this.setState({ left });
+    if (left === 0) this._finish('timeout');
+  }, 200);
+}
+_finish(kind) {
+  const s = this.state || {};
+  if (s.done || s.phase !== 'play') return;
+  clearInterval(this._iv);
+  this.setState({ done: kind });
+}
+_clear() { clearTimeout(this._ti1); clearTimeout(this._ti2); clearInterval(this._iv); }
+_stop() { this._live = false; this._clear(); }
+_setRoot(el) {
+  if (!el || this._obs || typeof IntersectionObserver === 'undefined') return;
+  this._obs = new IntersectionObserver((es) => {
+    const e = es[es.length - 1];
+    const vis = e.isIntersecting && e.intersectionRatio >= 0.5;
+    if (vis && !this._live) this._begin();
+    else if (!vis && this._live) this._stop();
+  }, { threshold: [0, 0.5, 1] });
+  this._obs.observe(el);
+}
+componentDidMount() { this._fb = setTimeout(() => { if (!this._obs && !this._live) this._begin(); }, 400); }
+componentWillUnmount() { this._stop(); clearTimeout(this._fb); if (this._obs) this._obs.disconnect(); }
+_common(S) {
+  const phase = S.phase || 'intro';
+  const left = typeof S.left === 'number' ? S.left : this._T();
+  const done = S.done || null;
+  const urgent = phase === 'play' && !done && left <= 3;
+  if (!this._sr) this._sr = (el) => this._setRoot(el);
+  return {
+    setRoot: this._sr,
+    introOn: phase === 'intro', introOp: S.introOut ? 0 : 1, skipIntro: () => this._play(),
+    timeLabel: (done === 'timeout' ? 0 : left) + ' s',
+    timeW: phase !== 'play' ? 100 : (done === 'timeout' ? 0 : left * 100 / this._T()),
+    timeBg: urgent ? '#b83a26' : '#f4e7d0', timeInk: urgent ? '#f4e7d0' : '#1a1411',
+    timeCls: urgent ? 'kpulse' : '', barBg: urgent ? '#b83a26' : '#f2b544',
+    isDone: !!done, notDone: !done, timedOut: done === 'timeout', picked: done === 'pick',
+    toastBg: done === 'timeout' ? '#2a1d18' : '#5e0c10',
+    ctaLabel: done === 'timeout' ? 'seguir' : 'continuar'
+  };
+}
+}
+</script>
+<script src="../runtime/preact.min.umd.js"></script>
+<script src="../runtime/kinoo-dc.js"></script>
+</body>
+</html>
